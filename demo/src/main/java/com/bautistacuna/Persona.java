@@ -21,7 +21,41 @@ public class Persona {
         this.direccion = direccion;
         this.apellidos = apellidos;
     }
+    
 
+    public String getNombre() {
+        return nombre;
+    }
+
+
+    public int getEdad() {
+        return edad;
+    }
+
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+
+    public static Persona factory(String cadena){
+        if(cadena==null){
+            throw new IllegalArgumentException("No son válidos los argumentos");
+        }
+        String partes[]= cadena.split(",");
+
+        if(partes.length!=4){
+            throw new IllegalArgumentException("No son válidos los argumentos");
+        }
+        try {
+            int edad = Integer.parseInt(partes[1]);
+            return new Persona(partes[0], edad, partes[2], partes[3]);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("No son válidos los argumentos");
+        }
+        
+        
+    }
     /**
      * Getter email
      * @return el email de la persona
@@ -29,5 +63,6 @@ public class Persona {
     public String getDireccion(){
         return direccion;
     }
+
     
 }
